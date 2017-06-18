@@ -4,11 +4,11 @@
 
 class Default {
 
-    primaryColor = "#F00";
+    primaryColor = "#ff86a0";
 
     backgroundColor = "#FFF"
 
-    primaryText = "#F0F"
+    primaryText = "#ff86a0"
 
     statusBarColor = "#bf6b6b"
 

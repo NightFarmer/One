@@ -16,6 +16,9 @@ import {observer} from 'mobx-react'
 
 import theme, {StyleHolder, ThemeDefault, ThemeDark} from './theme'
 
+import {Router} from 'react-native-router-flux';
+import scenes from './scene'
+
 @observer
 class One extends Component {
 
@@ -77,5 +80,10 @@ const styleHolder = StyleHolder.create(() => {
     }
 });
 
+class App extends Component {
+    render() {
+        return <Router scenes={scenes}/>
+    }
+}
 
-export default One
+export default App
