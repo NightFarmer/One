@@ -10,6 +10,8 @@ class Default {
 
     primaryText = "#ff86a0"
 
+    primaryTextLight="#ffafc3"
+
     statusBarColor = "#bf6b6b"
 
     statusBarStyle = "dark-content" //'default', 'light-content', 'dark-content'

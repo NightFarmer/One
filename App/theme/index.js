@@ -4,7 +4,7 @@
 import {observable, action} from 'mobx'
 
 import StyleHolder from './StyleHolder'
-import ThemeDefault from './ThemeDefault'
+import ThemePink from './ThemePink'
 import ThemeDark from './ThemeDark'
 
 
@@ -18,6 +18,9 @@ class CurrentStyle {
 
     @observable
     primaryText;
+
+    @observable
+    primaryTextLight;
 
     @observable
     statusBarColor;
@@ -36,12 +39,12 @@ class CurrentStyle {
 }
 
 let currentStyle = new CurrentStyle();
-currentStyle.setTheme(ThemeDefault);
+currentStyle.setTheme(ThemeDark);
 
 export default currentStyle
 
 export {
     StyleHolder,
-    ThemeDefault,
+    ThemePink,
     ThemeDark
 }

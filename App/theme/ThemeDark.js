@@ -8,7 +8,9 @@ class Default {
 
     backgroundColor = "#778"
 
-    primaryText = "#a8a8a8"
+    primaryText = "#424242"
+
+    primaryTextLight="#9a9a9a"
 
     statusBarColor = "#444142"
 

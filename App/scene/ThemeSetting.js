@@ -11,7 +11,7 @@ import {
     StatusBar
 } from 'react-native';
 
-import Theme, {StyleHolder, ThemeDefault, ThemeDark} from '../theme'
+import Theme, {StyleHolder, ThemePink, ThemeDark} from '../theme'
 import TopBar from '../widget/TopBar'
 
 class ThemeSetting extends Component {
@@ -21,11 +21,11 @@ class ThemeSetting extends Component {
         return (
             <View>
                 <TopBar title="设置主题"/>
-                <TouchableOpacity onPress={()=>this.setTheme(ThemeDefault)}>
-                    <Text style={styles.defButton}>默认</Text>
-                </TouchableOpacity>
                 <TouchableOpacity onPress={()=>this.setTheme(ThemeDark)}>
-                    <Text style={styles.darkButton}>暗色</Text>
+                    <Text style={styles.darkButton}>暗色默认</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={()=>this.setTheme(ThemePink)}>
+                    <Text style={styles.pinkButton}>粉色</Text>
                 </TouchableOpacity>
             </View>
         )
@@ -38,11 +38,13 @@ class ThemeSetting extends Component {
 
 const styleHolder = StyleHolder.create(() => {
     return {
-        defButton: {
-            color: ThemeDefault.primaryText
+        pinkButton: {
+            color: ThemePink.primaryText,
+            fontSize: 30
         },
         darkButton: {
-            color: ThemeDark.primaryText
+            color: ThemeDark.primaryText,
+            fontSize: 30
         }
     }
 })

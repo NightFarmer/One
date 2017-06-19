@@ -17,6 +17,8 @@ import {StyleHolder} from '../theme'
 
 import TopBar from '../widget/TopBar'
 
+import Dayly from './Dayly'
+
 class Home extends Component {
 
     render() {
@@ -26,6 +28,7 @@ class Home extends Component {
                 <TouchableOpacity onPress={()=>Actions.themeSetting()}>
                     <Text>设置主题颜色</Text>
                 </TouchableOpacity>
+                <Dayly/>
             </View>
         )
     }
