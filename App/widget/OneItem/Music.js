@@ -19,11 +19,25 @@ import Theme, {StyleHolder} from '../../theme'
 
 let winWidth = Dimensions.get("window").width;
 
+import {MusicPlay} from '../../global'
+
 @observer
 class Music extends Component {
+
+    componentDidMount() {
+        let a = {
+            title: 'mp3 remote download',
+            url: 'http://orh51lve9.bkt.clouddn.com/1770127757_10582545_l.mp3',
+        }
+        setTimeout(() => {
+            MusicPlay.play(a.url, a.title)
+        }, 3000)
+    }
+
     render() {
         let width = winWidth / 2
         let item = this.props.item
+        // console.info(JSON.stringify(item))
         let height = width
         let styles = styleHolder.styles
         return <View style={{paddingLeft:20,paddingRight:20}}>

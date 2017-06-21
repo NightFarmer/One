@@ -13,7 +13,12 @@ import {
 
 import Theme, {StyleHolder, ThemePink, ThemeDark} from '../theme'
 import TopBar from '../widget/TopBar'
+import {observable, action} from 'mobx'
+import {observer} from 'mobx-react'
 
+import {MusicPlay} from '../global'
+
+@observer
 class ThemeSetting extends Component {
 
     render() {
@@ -21,6 +26,9 @@ class ThemeSetting extends Component {
         return (
             <View>
                 <TopBar title="设置主题"/>
+                {
+                    MusicPlay.state == MusicPlay.PLAYING ? <Text>音乐播放中</Text> : null
+                }
                 <TouchableOpacity onPress={()=>this.setTheme(ThemeDark)}>
                     <Text style={styles.darkButton}>暗色默认</Text>
                 </TouchableOpacity>
