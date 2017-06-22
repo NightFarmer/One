@@ -8,10 +8,16 @@ import Sound from 'react-native-sound';
 class MusicPlayDefine {
 
     @observable
+    audio_url;//唯一标识，字段由接口固定，所以是这么名字
+
+    @observable
     url = "";
 
     @observable
     name = "";
+
+    @observable
+    artists = "";
 
     @observable
     state = MusicPlay.IDLE;
@@ -21,13 +27,45 @@ class MusicPlayDefine {
     PLAYING = 2;
     PAUSED = 3;
 
+    async parseUrl(artists, name) {
+        console.info(artists, name)
+        let url = "";
+        let response = await fetch("http://music.nightfarmer.win/search?keywords=" + name);
+        let resultObj = await response.json();
+        if (resultObj.code == 200 && resultObj.result.songCount > 0) {
+            let id = resultObj.result.songs[0].id;
+            for (let song of resultObj.result.songs) {
+                if (song.artists[0].name == name) {
+                    id = song.id;
+                    break;
+                }
+            }
+            response = await fetch("http://music.nightfarmer.win/music/url?id=" + id)
+            resultObj = await response.json()
+            if (resultObj.code == 200 && resultObj.data.length > 0) {
+                url = resultObj.data[0].url
+            }
+        }
+        return url
+    }
 
-    togglePlay(url, name) {
+    async togglePlay(artists, name, audio_url) {
+        let url;
+        if (this.audio_url == audio_url) {
+            url = this.url
+        } else {
+            url = await this.parseUrl(artists, name)
+            if (!url) {
+                console.info("解析播放地址失败")
+                return;
+            }
+        }
+
         if (!this.currentSound) {
-            this.play(url, name)
+            this.play(url, name, artists, audio_url)
             return
         }
-        if (this.url != url) {
+        if (this.audio_url != audio_url) {
             this.currentSound.stop()
         }
         this.currentSound.getCurrentTime((seconds, isPlaying) => {
@@ -53,9 +91,11 @@ class MusicPlayDefine {
     };
 
     @action
-    play(url, name) {
+    play(url, name, artists, audio_url) {
         this.url = url
         this.name = name
+        this.artists = artists
+        this.audio_url = audio_url
         console.info("invoke play")
         this.playSound()
     }

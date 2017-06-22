@@ -34,7 +34,7 @@ class Music extends Component {
     playViewCacheState = -1;
 
     modifyAnim = () => {
-        if (MusicPlay.url != this.props.item.url) {
+        if (MusicPlay.audio_url != this.props.item.audio_url) {
             return
         }
         switch (MusicPlay.state) {
@@ -62,7 +62,7 @@ class Music extends Component {
     }
 
     render() {
-        this.props.item.url = "http://orh51lve9.bkt.clouddn.com/1770127757_10582545_l.mp3"
+        // this.props.item.url = "http://m10.music.126.net/20170622180018/6e26b3c95190076ddcf7c98b563b0325/ymusic/16c3/284e/6135/9d88a978c172bffeb8b94047a072c584.mp3"
 
         let width = winWidth / 2
         let item = this.props.item
@@ -104,11 +104,18 @@ class Music extends Component {
     runningAnim = null
 
     togglePlay = () => {
+        // let a = {
+        // url: 'http://m10.music.126.net/20170622180018/6e26b3c95190076ddcf7c98b563b0325/ymusic/16c3/284e/6135/9d88a978c172bffeb8b94047a072c584.mp3',
+        // artists: "陈一发儿",
+        // name: "童话镇",
+        // }
         let a = {
-            title: 'mp3 remote download',
-            url: 'http://orh51lve9.bkt.clouddn.com/1770127757_10582545_l.mp3',
+            // url: 'http://m10.music.126.net/20170622180018/6e26b3c95190076ddcf7c98b563b0325/ymusic/16c3/284e/6135/9d88a978c172bffeb8b94047a072c584.mp3',
+            artists: "杨宗纬",
+            name: "初爱",
         }
-        MusicPlay.togglePlay(a.url, a.title)
+        // MusicPlay.togglePlay(a.url, a.title)
+        MusicPlay.togglePlay(a.artists, a.name, this.props.item.audio_url)
     }
 
     playAnim = () => {
@@ -119,7 +126,7 @@ class Music extends Component {
         })
         this.runningAnim.start(() => {
             // console.info(url)
-            if (this.props.item.url == MusicPlay.url && MusicPlay.state == MusicPlay.PLAYING) {
+            if (this.props.item.audio_url == MusicPlay.audio_url && MusicPlay.state == MusicPlay.PLAYING) {
                 // if (MusicPlay.state == MusicPlay.PLAYING) {
                 this.carRotate.setValue(0)
                 this.playAnim()
