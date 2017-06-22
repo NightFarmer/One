@@ -95,6 +95,9 @@ class Home extends Component {
     @action
     onResult(resultObj) {
         this.pageData = resultObj.data;
+        // if (Math.random() > 0.5) {
+        //     this.pageData.content_list = []
+        // }
         this.refreshing = false
     }
 
