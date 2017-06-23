@@ -8,13 +8,14 @@ import {
     View,
     TouchableOpacity,
     FlatList,
-    Image
+    Image,
+    RefreshControl
 } from 'react-native';
 
 import {Actions} from 'react-native-router-flux'
 import {observable, action} from 'mobx'
 import {observer} from 'mobx-react'
-import {StyleHolder} from '../theme'
+import Theme, {StyleHolder} from '../theme'
 
 import OneItem from '../widget/OneItem'
 
@@ -41,12 +42,22 @@ class Home extends Component {
             <View>
                 <FlatList
                     style={{height:500}}
-                    refreshing={this.refreshing}
                     data={this.pageData.content_list}
                     renderItem={this.renderItem}
                     keyExtractor={this._keyExtractor}
-                    onRefresh={this.loadDayData}
                     ItemSeparatorComponent={this.ItemSeparatorComponent}
+                    //onRefresh={this.loadDayData}
+                    //refreshing={this.refreshing}
+                    refreshControl={
+                        <RefreshControl
+                            refreshing={this.refreshing}
+                            onRefresh={this.loadDayData}
+                            title="刷新"
+                            titleColor={Theme.primaryColor}
+                            tintColor={Theme.primaryColor}
+                            colors={[Theme.primaryColor]}
+                        />
+                    }
                 />
             </View>
         )

@@ -8,7 +8,7 @@ import Sound from 'react-native-sound';
 class MusicPlayDefine {
 
     @observable
-    audio_url;//唯一标识，字段由接口固定，所以是这么名字
+    id;//唯一标识
 
     @observable
     url = "";
@@ -35,7 +35,7 @@ class MusicPlayDefine {
         if (resultObj.code == 200 && resultObj.result.songCount > 0) {
             let id = resultObj.result.songs[0].id;
             for (let song of resultObj.result.songs) {
-                if (song.artists[0].name == name) {
+                if (song.artists[0].name == artists) {
                     id = song.id;
                     break;
                 }
@@ -49,25 +49,26 @@ class MusicPlayDefine {
         return url
     }
 
-    async togglePlay(artists, name, audio_url) {
-        let url;
-        if (this.audio_url == audio_url) {
-            url = this.url
-        } else {
+    async stop() {
+        this.currentSound && this.currentSound.pause(() => {
+            this.state = this.PAUSED
+        })
+    }
+
+    async togglePlay(artists, name, id) {
+        let url = this.url;
+        if (this.id != id) {
             url = await this.parseUrl(artists, name)
             if (!url) {
                 console.info("解析播放地址失败")
                 return;
             }
-        }
-
-        if (!this.currentSound) {
-            this.play(url, name, artists, audio_url)
+            console.info("新地址:", url)
+            this.currentSound && this.currentSound.stop()
+            this.play(url, name, artists, id)
             return
         }
-        if (this.audio_url != audio_url) {
-            this.currentSound.stop()
-        }
+
         this.currentSound.getCurrentTime((seconds, isPlaying) => {
             if (isPlaying) {
                 this.currentSound.pause(() => {
@@ -91,11 +92,11 @@ class MusicPlayDefine {
     };
 
     @action
-    play(url, name, artists, audio_url) {
+    play(url, name, artists, id) {
         this.url = url
         this.name = name
         this.artists = artists
-        this.audio_url = audio_url
+        this.id = id
         console.info("invoke play")
         this.playSound()
     }
