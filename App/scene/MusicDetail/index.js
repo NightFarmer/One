@@ -63,7 +63,7 @@ class ArticleDetail extends Component {
                                 injectedJavaScript="window.WebViewJavascriptBridge={callHandler:function(funcName,value){window.postMessage(JSON.stringify({funcName:funcName,value:value}))}}"
                                 onMessage={(evnent)=>this.playMusic(evnent.nativeEvent.data)}
                             />
-                            <View style={{margin:15}}>
+                            <View style={{marginLeft:15,marginRight:15,marginBottom:15}}>
                                 <Text style={{padding:5,fontSize:15,color:"#333"}}>作者</Text>
                                 <View style={{height:3,width:80,backgroundColor:"#333"}}/>
                                 <View style={{flexDirection:"row",alignItems: "center",paddingTop:10}}>

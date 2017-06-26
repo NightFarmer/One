@@ -56,7 +56,7 @@ class ArticleDetail extends Component {
                             <View style={{margin:15}}>
                                 <Text style={{fontSize:25,color:"#333",marginTop:10}}>{this.data.hp_title}</Text>
                                 <View
-                                    style={{height:5,width:100,backgroundColor:"#333",marginTop:20,marginBottom:20}}/>
+                                    style={{height:3,width:100,backgroundColor:"#333",marginTop:20,marginBottom:20}}/>
                                 <Text style={styles.storyAuthor}>文/{this.data.hp_author}</Text>
                             </View>
                             <WebViewAutoHeight
@@ -67,7 +67,7 @@ class ArticleDetail extends Component {
                                 injectedJavaScript="window.WebViewJavascriptBridge={callHandler:function(funcName,value){window.postMessage(JSON.stringify({funcName:funcName,value:value}))}}"
                                 onMessage={(evnent)=>this.playMusic(evnent.nativeEvent.data)}
                             />
-                            <View style={{margin:15}}>
+                            <View style={{marginLeft:15,marginRight:15,marginBottom:15}}>
                                 <Text style={{padding:5,fontSize:15,color:"#333"}}>作者</Text>
                                 <View style={{height:3,width:80,backgroundColor:"#333"}}/>
                                 {this.data.author.map((author, index) =>

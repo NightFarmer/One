@@ -56,8 +56,10 @@ class ArticleDetail extends Component {
                             <View style={{margin:15}}>
                                 <Text style={{fontSize:25,color:"#333",marginTop:10}}>{this.data.question_title}</Text>
                                 <Text style={styles.storyAuthor}>{this.data.question_content}</Text>
-                                <Text style={styles.storyAuthor}>————{this.data.asker.user_name}问道</Text>
-                                <Text>{this.data.answerer.user_name}答:</Text>
+                                <Text style={styles.storyAuthor}>——{this.data.asker.user_name}问道</Text>
+                                <View
+                                    style={{width:"100%",height:StyleSheet.hairlineWidth,backgroundColor:"#dddddd",marginTop:20}}/>
+                                <Text style={styles.answerer}>{this.data.answerer.user_name}答:</Text>
                             </View>
                             <WebViewAutoHeight
                                 style={styles.webView}
@@ -67,7 +69,7 @@ class ArticleDetail extends Component {
                                 injectedJavaScript="window.WebViewJavascriptBridge={callHandler:function(funcName,value){window.postMessage(JSON.stringify({funcName:funcName,value:value}))}}"
                                 onMessage={(evnent)=>this.playMusic(evnent.nativeEvent.data)}
                             />
-                            <View style={{margin:15}}>
+                            <View style={{marginLeft:15,marginRight:15,marginBottom:15}}>
                                 <Text style={{padding:5,fontSize:15,color:"#333"}}>问答者</Text>
                                 <View style={{height:3,width:80,backgroundColor:"#333"}}/>
                                 {this.data.author_list.map((author, index) =>
@@ -147,8 +149,14 @@ const styleHolder = StyleHolder.create(() => {
         },
         storyAuthor: {
             fontSize: 16,
-            color: "#333"
+            color: "#333",
+            marginTop: 18
         },
+        answerer: {
+            fontSize: 20,
+            color: "#333",
+            marginTop: 25
+        }
     }
 });
 
