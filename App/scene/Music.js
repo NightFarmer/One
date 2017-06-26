@@ -67,12 +67,21 @@ class Music extends Component {
         this.loadDayData()
     }
 
+    // loadDayData = () => {
+    // let url = `http://v3.wufazhuce.com:8000/api/channel/music/more/0?version=4.2.2`;
+    // console.info(0)
+    // fetch(url).then((response) => {
+    //     console.info(1)
+    //     return response.json()
+    // }).then((resultObj) => {
+    //     console.info(2)
+    //     this.onResult(resultObj)
+    // })
     loadDayData = async() => {
         try {
             let url = `http://v3.wufazhuce.com:8000/api/channel/music/more/0?version=4.2.2`;
             console.info(url)
             let response = await fetch(url);
-            console.info(111)
             let newVar = await response.text();
             let parse = JSON.parse(newVar);
             // let resultObj = await response.json();

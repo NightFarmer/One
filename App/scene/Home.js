@@ -40,10 +40,10 @@ class Home extends Component {
                     tabBarPosition="bottom"
                     renderTabBar={()=><CustomTabBar/>}
                 >
-                    <Movie tabLabel="电影"/>
                     <Daily tabLabel="每日"/>
                     <Reading tabLabel="阅读"/>
                     <Music tabLabel="音乐"/>
+                    <Movie tabLabel="电影"/>
                 </ScrollableTabView>
             </View>
         )
