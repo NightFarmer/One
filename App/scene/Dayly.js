@@ -39,9 +39,9 @@ class Home extends Component {
     render() {
         console.info("render..")
         return (
-            <View>
+            <View style={{flex:1}}>
                 <FlatList
-                    style={{height:500}}
+                    style={{flex:1}}
                     data={this.pageData.content_list}
                     renderItem={this.renderItem}
                     keyExtractor={this._keyExtractor}
@@ -94,7 +94,9 @@ class Home extends Component {
             if (!this.dayIdList) {
                 await this.loadDayList()
             }
-            let response = await fetch(`http://v3.wufazhuce.com:8000/api/onelist/${this.dayId}/0?version=4.2.2`);
+            let url = `http://v3.wufazhuce.com:8000/api/onelist/${this.dayId}/0?version=4.2.2`;
+            console.info(url)
+            let response = await fetch(url);
             let resultObj = await response.json();
             this.onResult(resultObj);
         } catch (e) {

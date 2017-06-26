@@ -22,7 +22,7 @@ class Home extends Component {
 
     render() {
         return (
-            <View>
+            <View style={{flex:1}}>
                 <TopBar hideBackButton={true} title="One"/>
                 <TouchableOpacity onPress={()=>Actions.themeSetting()}>
                     <Text>设置主题颜色</Text>

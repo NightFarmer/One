@@ -19,6 +19,10 @@ import {StyleHolder} from '../../theme'
 import Painting from './Painting'
 import Music from './Music'
 import Common from './Common'
+import Essay from './Essay'
+import Serial from './Serial'
+import Question from './Question'
+import Movie from './Movie'
 
 
 const OneItem = ({item}) => {
@@ -28,9 +32,13 @@ const OneItem = ({item}) => {
         case 4:
             return <Music item={item}/>
         case 1:
+            return <Essay item={item}/>
         case 2:
+            return <Serial item={item}/>
         case 3:
+            return <Question item={item}/>
         case 5:
+            return <Movie item={item}/>
         case 6:
         case 7: {
             return <Common item={item}/>
