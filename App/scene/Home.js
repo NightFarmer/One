@@ -16,33 +16,15 @@ import {StyleHolder} from '../theme'
 
 import TopBar from '../widget/TopBar'
 
-import Dayly from './Dayly'
+import Daily from './Daily'
+import Reading from './Reading'
+import Music from './Music'
+import Movie from './Movie'
 
-const ScrollableTabView = require('react-native-scrollable-tab-view');
+import ScrollableTabView, {ScrollableTabBar, DefaultTabBar} from 'react-native-scrollable-tab-view';
 
-// import CustomTabBar from '../widget/TabBar'
+import CustomTabBar from '../widget/MainTabBar'
 
-// const tabLabels = [
-//     '每日',
-//     '阅读',
-//     '音乐',
-//     '电影'
-// ]
-
-// const tabIcons = [
-//     require("../resource/img/home.png"),
-//     require("../resource/img/reading.png"),
-//     require("../resource/img/music.png"),
-//     require("../resource/img/movie.png"),
-// ];
-// const tabActIcons = [
-//     require("../resource/img/home_active.png"),
-//     require("../resource/img/reading_active.png"),
-//     require("../resource/img/music_active.png"),
-//     require("../resource/img/movie_active.png"),
-// ];
-const tabIcons = ['ios-home', 'ios-compass', 'ios-heart', 'ios-contact'];
-const tabNames = ["推荐", "榜单", "分类", "书架"];
 class Home extends Component {
 
     render() {
@@ -52,8 +34,17 @@ class Home extends Component {
                 <TouchableOpacity onPress={()=>Actions.themeSetting()}>
                     <Text>设置主题颜色</Text>
                 </TouchableOpacity>
-
-                    <Dayly/>
+                <ScrollableTabView
+                    locked={true}
+                    scrollWithoutAnimation={true}
+                    tabBarPosition="bottom"
+                    renderTabBar={()=><CustomTabBar/>}
+                >
+                    <Movie tabLabel="电影"/>
+                    <Daily tabLabel="每日"/>
+                    <Reading tabLabel="阅读"/>
+                    <Music tabLabel="音乐"/>
+                </ScrollableTabView>
             </View>
         )
     }

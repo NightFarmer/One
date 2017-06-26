@@ -47,7 +47,7 @@ class ArticleDetail extends Component {
         let styles = styleHolder.styles;
         return (
             <View style={{flex:1}}>
-                <TopBar hideBackButton={true} title="一个影视"/>
+                <TopBar title="一个影视"/>
                 <LoadingContainer style={{flex:1}}
                                   loading={!this.data}
                 >

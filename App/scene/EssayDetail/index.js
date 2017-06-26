@@ -47,7 +47,7 @@ class ArticleDetail extends Component {
         let styles = styleHolder.styles;
         return (
             <View style={{flex:1}}>
-                <TopBar hideBackButton={true} title="ONE STORY"/>
+                <TopBar title="ONE STORY"/>
                 <LoadingContainer style={{flex:1}}
                                   loading={!this.data}
                 >
@@ -57,7 +57,7 @@ class ArticleDetail extends Component {
                                 <Text style={{fontSize:25,color:"#333",marginTop:10}}>{this.data.hp_title}</Text>
                                 <View
                                     style={{height:3,width:100,backgroundColor:"#333",marginTop:20,marginBottom:20}}/>
-                                <Text style={styles.storyAuthor}>文/{this.data.hp_author}</Text>
+                                <Text style={styles.storyAuthor}>文/{this.data.author[0].user_name}</Text>
                             </View>
                             <WebViewAutoHeight
                                 style={styles.webView}

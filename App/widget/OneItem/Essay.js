@@ -30,9 +30,13 @@ class Common extends Component {
         let item = this.props.item
         let height = width * 0.59
         let styles = styleHolder.styles
+        let title = '阅读';
+        if (item.tag_list && item.tag_list.length > 0 && item.tag_list[0].title) {
+            title = item.tag_list[0].title
+        }
         return <TouchableWithoutFeedback onPress={()=>Actions.EssayDetail({item_id:item.item_id})}>
             <View style={{paddingLeft:20,paddingRight:20}}>
-                <Text style={styles.category}>- ONE STORY -</Text>
+                <Text style={styles.category}>- {title} -</Text>
                 <Text style={styles.title}>{item.title}</Text>
                 <Text style={styles.titleLight}>文/{item.author.user_name}</Text>
                 <Image source={{uri:item.img_url}} style={{height:height,width:width}}/>

@@ -20,15 +20,7 @@ import Theme, {StyleHolder} from '../theme'
 import OneItem from '../widget/OneItem'
 
 @observer
-class Home extends Component {
-
-    dayIdList;
-
-    // @observable
-    dayId;
-
-    // @observable
-    // listData = [];
+class Movie extends Component {
 
     @observable
     pageData = {}
@@ -42,7 +34,7 @@ class Home extends Component {
             <View style={{flex:1}}>
                 <FlatList
                     style={{flex:1}}
-                    data={this.pageData.content_list}
+                    data={this.pageData}
                     renderItem={this.renderItem}
                     keyExtractor={this._keyExtractor}
                     ItemSeparatorComponent={this.ItemSeparatorComponent}
@@ -63,65 +55,47 @@ class Home extends Component {
         )
     }
 
-    ItemSeparatorComponent = () => <View style={{height:10,backgroundColor:"#e4e4e4"}}/>
+    ItemSeparatorComponent = () => <View style={{height:10,backgroundColor:"#ebebeb"}}/>
 
     _keyExtractor = (item, index) => item.id;
 
     renderItem = ({item}) => {
-        // console.info(item.title,JSON.stringify(item.last_update_date))
         return <OneItem item={item}/>
     }
 
     componentDidMount() {
-        this.loadDayList()
+        this.loadDayData()
     }
-
-    loadDayList = async() => {
-        try {
-            let response = await fetch("http://v3.wufazhuce.com:8000/api/onelist/idlist?version=4.2.2")
-            let resultObj = await response.json()
-            this.dayIdList = resultObj.data
-            this.dayId = this.dayIdList[0];
-            await this.loadDayData()
-        } catch (e) {
-        } finally {
-            this.refreshing = false
-        }
-    };
 
     loadDayData = async() => {
         try {
-            if (!this.dayIdList) {
-                await this.loadDayList()
-            }
-            let url = `http://v3.wufazhuce.com:8000/api/onelist/${this.dayId}/0?version=4.2.2`;
+            let url = `http://v3.wufazhuce.com:8000/api/channel/movie/more/0?version=4.2.2`;
             console.info(url)
             let response = await fetch(url);
-            let resultObj = await response.json();
-            this.onResult(resultObj);
+            console.info(111)
+            let newVar = await response.text();
+            let parse = JSON.parse(newVar);
+            // let resultObj = await response.json();
+            this.onResult(parse);
         } catch (e) {
+            console.info(4444)
         } finally {
+            // console.info(555)
             this.refreshing = false
         }
     };
 
     @action
     onResult(resultObj) {
+        // console.info(1111)
         this.pageData = resultObj.data;
-        // if (Math.random() > 0.5) {
-        //     this.pageData.content_list = []
-        // }
         this.refreshing = false
     }
 
-    // setPageData = (pageData) => {
-    //     this.listData = pageData.data.content_list
-    //
-    // }
 }
 
 const styles = StyleHolder.create(() => {
     return {}
 });
 
-export default Home
+export default Movie

@@ -29,14 +29,14 @@ const OneItem = ({item}) => {
     switch (parseInt(item.category)) {
         case 0:
             return <Painting item={item}/>
-        case 4:
-            return <Music item={item}/>
         case 1:
             return <Essay item={item}/>
         case 2:
             return <Serial item={item}/>
         case 3:
             return <Question item={item}/>
+        case 4:
+            return <Music item={item}/>
         case 5:
             return <Movie item={item}/>
         case 6:
