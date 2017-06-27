@@ -11,6 +11,7 @@ import EssayDetail from './EssayDetail'
 import SerialDetail from './SerialDetail'
 import QuestionDetail from './QuestionDetail'
 import MovieDetail from './MovieDetail'
+import MoviePlay from './MoviePlay'
 
 const scenes = Actions.create(
     <Scene key="root" hideNavBar={true}>
@@ -22,6 +23,7 @@ const scenes = Actions.create(
         <Scene key="SerialDetail" component={SerialDetail}/>
         <Scene key="QuestionDetail" component={QuestionDetail}/>
         <Scene key="MovieDetail" component={MovieDetail}/>
+        <Scene key="MoviePlay" component={MoviePlay}/>
     </Scene>
 );
 

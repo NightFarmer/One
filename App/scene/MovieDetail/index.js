@@ -110,6 +110,7 @@ class ArticleDetail extends Component {
             let audioInfo = dataObj.value
             // audio.name
             // audio.url
+            Actions.MoviePlay({url:audioInfo.url})
         }
     }
 
