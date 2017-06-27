@@ -19,6 +19,8 @@ import Theme, {StyleHolder} from '../theme'
 
 import OneItem from '../widget/OneItem'
 
+import TopBar from '../widget/TopBar'
+
 @observer
 class Music extends Component {
 
@@ -32,6 +34,7 @@ class Music extends Component {
         console.info("render..music")
         return (
             <View style={{flex:1}}>
+                <TopBar hideBackButton={true} title="一个音乐"/>
                 <FlatList
                     style={{flex:1}}
                     data={this.pageData}

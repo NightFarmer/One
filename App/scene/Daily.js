@@ -19,6 +19,8 @@ import Theme, {StyleHolder} from '../theme'
 
 import OneItem from '../widget/OneItem'
 
+import TopBar from '../widget/TopBar'
+
 @observer
 class Daily extends Component {
 
@@ -40,6 +42,7 @@ class Daily extends Component {
         console.info("render..daily")
         return (
             <View style={{flex:1}}>
+                <TopBar hideBackButton={true} title="一个"/>
                 <FlatList
                     style={{flex:1}}
                     data={this.pageData}

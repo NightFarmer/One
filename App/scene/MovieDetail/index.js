@@ -106,6 +106,11 @@ class ArticleDetail extends Component {
         } else if (dataObj.funcName == 'stopAudio') {
             MusicPlay.stop()
         }
+        if (dataObj.funcName == 'playVideo') {
+            let audioInfo = dataObj.value
+            // audio.name
+            // audio.url
+        }
     }
 
     componentDidMount() {

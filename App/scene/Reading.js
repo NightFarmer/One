@@ -19,6 +19,8 @@ import Theme, {StyleHolder} from '../theme'
 
 import OneItem from '../widget/OneItem'
 
+import TopBar from '../widget/TopBar'
+
 @observer
 class Reading extends Component {
 
@@ -32,6 +34,7 @@ class Reading extends Component {
         console.info("render..reading")
         return (
             <View style={{flex:1}}>
+                <TopBar hideBackButton={true} title="一个阅读"/>
                 <FlatList
                     style={{flex:1}}
                     data={this.pageData}

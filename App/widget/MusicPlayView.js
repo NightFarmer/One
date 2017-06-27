@@ -83,7 +83,7 @@ class MusicPlayView extends Component {
                         onPress={this.togglePlay}>
                         <View
                             style={{width:buttonSize,height:buttonSize,backgroundColor:"#000",opacity:0.5,borderRadius:buttonSize/2,position:"absolute"}}/>
-                        {MusicPlay.state == MusicPlay.PLAYING ?
+                        {MusicPlay.state == MusicPlay.PLAYING && MusicPlay.id == this.props.id ?
                             <PauseView sideLength={buttonSize/2} color="white"/>
                             :
                             <TriangleView sideLength={buttonSize/2} color="white"
