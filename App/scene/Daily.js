@@ -31,21 +31,22 @@ class Daily extends Component {
     // listData = [];
 
     @observable
-    pageData = {}
+    pageData = []
 
     @observable
     refreshing = true
 
     render() {
-        console.info("render..")
+        console.info("render..daily")
         return (
             <View style={{flex:1}}>
                 <FlatList
                     style={{flex:1}}
-                    data={this.pageData.content_list}
+                    data={this.pageData}
                     renderItem={this.renderItem}
                     keyExtractor={this._keyExtractor}
                     ItemSeparatorComponent={this.ItemSeparatorComponent}
+                    initialNumToRender={3}
                     //onRefresh={this.loadDayData}
                     //refreshing={this.refreshing}
                     refreshControl={
@@ -107,7 +108,7 @@ class Daily extends Component {
 
     @action
     onResult(resultObj) {
-        this.pageData = resultObj.data;
+        this.pageData = resultObj.data.content_list;
         this.refreshing = false
     }
 

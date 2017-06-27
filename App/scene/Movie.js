@@ -23,13 +23,13 @@ import OneItem from '../widget/OneItem'
 class Movie extends Component {
 
     @observable
-    pageData = {}
+    pageData = []
 
     @observable
     refreshing = true
 
     render() {
-        console.info("render..")
+        console.info("render..movie")
         return (
             <View style={{flex:1}}>
                 <FlatList
@@ -38,6 +38,7 @@ class Movie extends Component {
                     renderItem={this.renderItem}
                     keyExtractor={this._keyExtractor}
                     ItemSeparatorComponent={this.ItemSeparatorComponent}
+                    initialNumToRender={3}
                     //onRefresh={this.loadDayData}
                     //refreshing={this.refreshing}
                     refreshControl={
@@ -72,11 +73,8 @@ class Movie extends Component {
             let url = `http://v3.wufazhuce.com:8000/api/channel/movie/more/0?version=4.2.2`;
             console.info(url)
             let response = await fetch(url);
-            console.info(111)
-            let newVar = await response.text();
-            let parse = JSON.parse(newVar);
-            // let resultObj = await response.json();
-            this.onResult(parse);
+            let resultObj = await response.json();
+            this.onResult(resultObj);
         } catch (e) {
             console.info(4444)
         } finally {
