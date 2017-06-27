@@ -30,6 +30,8 @@ class Reading extends Component {
     @observable
     refreshing = true
 
+    loadingMore = false
+
     render() {
         console.info("render..reading")
         return (
@@ -54,9 +56,19 @@ class Reading extends Component {
                             colors={[Theme.primaryColor]}
                         />
                     }
+                    onEndReached={this.onEndReached}
+                    onEndReachedThreshold={3}
                 />
             </View>
         )
+    }
+
+    onEndReached = () => {
+        if (!this.refreshing && !this.loadingMore) {
+            console.info("onEndReached")
+            this.loadingMore = true
+            this.loadDayData()
+        }
     }
 
     ItemSeparatorComponent = () => <View style={{height:10,backgroundColor:"#ebebeb"}}/>
@@ -73,11 +85,15 @@ class Reading extends Component {
 
     loadDayData = async() => {
         try {
-            let url = `http://v3.wufazhuce.com:8000/api/channel/reading/more/0?version=4.2.2`;
+            let fromId = 0;
+            if (this.pageData.length > 0 && this.loadingMore) {
+                fromId = this.pageData[this.pageData.length - 1].id
+            }
+            let url = `http://v3.wufazhuce.com:8000/api/channel/reading/more/${fromId}?version=4.2.2`;
             console.info(url)
             let response = await fetch(url);
             let resultObj = await response.json();
-            this.onResult(resultObj);
+            this.onResult(resultObj, fromId == 0);
         } catch (e) {
             // console.info(4444)
         } finally {
@@ -87,9 +103,14 @@ class Reading extends Component {
     };
 
     @action
-    onResult(resultObj) {
+    onResult(resultObj, init) {
         // console.info(1111)
-        this.pageData = resultObj.data;
+        if (init) {
+            this.pageData = resultObj.data;
+        } else {
+            this.pageData = this.pageData.concat(resultObj.data);
+            this.loadingMore = false
+        }
         this.refreshing = false
     }
 
