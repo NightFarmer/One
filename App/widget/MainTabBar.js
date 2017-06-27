@@ -11,16 +11,16 @@ const {
 } = ReactNative;
 
 const tabIcons = [
-    require("../resource/img/home.png"),
-    require("../resource/img/reading.png"),
-    require("../resource/img/music.png"),
-    require("../resource/img/movie.png"),
+    require("../resource/img/main/home.png"),
+    require("../resource/img/main/reading.png"),
+    require("../resource/img/main/music.png"),
+    require("../resource/img/main/movie.png"),
 ];
 const tabActIcons = [
-    require("../resource/img/home_active.png"),
-    require("../resource/img/reading_active.png"),
-    require("../resource/img/music_active.png"),
-    require("../resource/img/movie_active.png"),
+    require("../resource/img/main/home_active.png"),
+    require("../resource/img/main/reading_active.png"),
+    require("../resource/img/main/music_active.png"),
+    require("../resource/img/main/movie_active.png"),
 ];
 
 const DefaultTabBar = React.createClass({
