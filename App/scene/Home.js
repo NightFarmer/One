@@ -40,7 +40,6 @@ class Home extends Component {
 
     tweenHandler = (ratio) => {
         this.maskOpacity.setValue(ratio * 0.3)
-        console.info(ratio)
         let drawerShadow = ratio < .2 ? ratio * 5 * 5 : 5
         return {
             drawer: {
@@ -58,7 +57,7 @@ class Home extends Component {
         "openDrawerOffset": 100,
         "closedDrawerOffset": 0,
         "panOpenMask": 0.05,
-        "panCloseMask": 0.9,
+        "panCloseMask": 0.25,
         "relativeDrag": false,
         "panThreshold": 0.25,
         "tweenHandlerOn": false,
