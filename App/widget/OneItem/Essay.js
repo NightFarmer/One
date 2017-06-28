@@ -23,6 +23,8 @@ import Theme, {StyleHolder} from '../../theme'
 
 let winWidth = Dimensions.get("window").width;
 
+import Touchable from './Touchable'
+
 @observer
 class Common extends Component {
     render() {
@@ -34,8 +36,8 @@ class Common extends Component {
         if (item.tag_list && item.tag_list.length > 0 && item.tag_list[0].title) {
             title = item.tag_list[0].title
         }
-        return <TouchableWithoutFeedback onPress={()=>Actions.EssayDetail({item_id:item.item_id})}>
-            <View style={{paddingLeft:20,paddingRight:20}}>
+        return <Touchable onPress={()=>Actions.EssayDetail({item_id:item.item_id})}>
+            <View>
                 <Text style={styles.category}>- {title} -</Text>
                 <Text style={styles.title}>{item.title}</Text>
                 <Text style={styles.titleLight}>文/{item.author.user_name}</Text>
@@ -46,7 +48,7 @@ class Common extends Component {
                     <Text>喜欢{item.like_count}</Text>
                 </View>
             </View>
-        </TouchableWithoutFeedback>
+        </Touchable>
     }
 }
 

@@ -21,6 +21,7 @@ import {observable, action} from 'mobx'
 import {observer} from 'mobx-react'
 import Theme, {StyleHolder} from '../../theme'
 
+import Touchable from './Touchable'
 let winWidth = Dimensions.get("window").width;
 
 @observer
@@ -30,8 +31,8 @@ class Common extends Component {
         let item = this.props.item
         let height = width * 0.59
         let styles = styleHolder.styles
-        return <TouchableWithoutFeedback onPress={()=>Actions.SerialDetail({item_id:item.item_id})}>
-            <View style={{paddingLeft:20,paddingRight:20}}>
+        return <Touchable onPress={()=>Actions.SerialDetail({item_id:item.item_id})}>
+            <View>
                 <Text style={styles.category}>- 连载 -</Text>
                 <Text style={styles.title}>{item.title}</Text>
                 <Text style={styles.titleLight}>文/{item.author.user_name}</Text>
@@ -42,7 +43,7 @@ class Common extends Component {
                     <Text>喜欢{item.like_count}</Text>
                 </View>
             </View>
-        </TouchableWithoutFeedback>
+        </Touchable>
     }
 }
 

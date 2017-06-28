@@ -29,6 +29,7 @@ import TriangleView from '../../widget/TriangleView'
 import PauseView from '../../widget/PauseView'
 import MusicPlayView from '../../widget/MusicPlayView'
 
+import Touchable from './Touchable'
 @observer
 class Music extends Component {
 
@@ -37,8 +38,8 @@ class Music extends Component {
         let item = this.props.item
         // console.info(JSON.stringify(item))
         let styles = styleHolder.styles
-        return <TouchableWithoutFeedback onPress={()=>Actions.MusicDetail({item_id:item.item_id})}>
-            <View style={{paddingLeft:20,paddingRight:20}}>
+        return <Touchable onPress={()=>Actions.MusicDetail({item_id:item.item_id})}>
+            <View>
                 <Text style={styles.category}>- 音乐 -</Text>
                 <Text style={styles.title}>{item.title}</Text>
                 <Text style={styles.titleLight}>文/{item.author.user_name}</Text>
@@ -56,7 +57,7 @@ class Music extends Component {
                     <Text>喜欢{item.like_count}</Text>
                 </View>
             </View>
-        </TouchableWithoutFeedback>
+        </Touchable>
     }
 
 }
