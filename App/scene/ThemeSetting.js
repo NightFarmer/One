@@ -11,7 +11,7 @@ import {
     StatusBar
 } from 'react-native';
 
-import Theme, {StyleHolder, ThemePink, ThemeDark} from '../theme'
+import Theme, {StyleHolder, ThemePink, ThemeLight} from '../theme'
 import TopBar from '../widget/TopBar'
 import {observable, action} from 'mobx'
 import {observer} from 'mobx-react'
@@ -29,8 +29,8 @@ class ThemeSetting extends Component {
                 {
                     MusicPlay.state == MusicPlay.PLAYING ? <Text>音乐播放中</Text> : null
                 }
-                <TouchableOpacity onPress={()=>this.setTheme(ThemeDark)}>
-                    <Text style={styles.darkButton}>暗色默认</Text>
+                <TouchableOpacity onPress={()=>this.setTheme(ThemeLight)}>
+                    <Text style={styles.lightButton}>默认</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={()=>this.setTheme(ThemePink)}>
                     <Text style={styles.pinkButton}>粉色</Text>
@@ -50,8 +50,8 @@ const styleHolder = StyleHolder.create(() => {
             color: ThemePink.primaryText,
             fontSize: 30
         },
-        darkButton: {
-            color: ThemeDark.primaryText,
+        lightButton: {
+            color: ThemeLight.primaryText,
             fontSize: 30
         }
     }

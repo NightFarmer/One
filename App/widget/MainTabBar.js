@@ -1,4 +1,9 @@
-const React = require('react');
+import React, {Component} from 'react'
+
+import {observable, action} from 'mobx'
+import {observer} from 'mobx-react'
+import Theme, {StyleHolder} from '../theme'
+
 const ReactNative = require('react-native');
 const {
     StyleSheet,
@@ -67,7 +72,7 @@ const DefaultTabBar = React.createClass({
             onPress={() => onPressHandler(page)}
         >
             <View style={[styles.tab, this.props.tabStyle, ]}>
-                <Image source={img} resizeMode="contain" style={[styles.tab, this.props.tabStyle, ]}/>
+                <TabImage img={img}/>
                 {/*<Text style={[{color: textColor, fontWeight, }, textStyle, ]}>*/}
                 {/*{name}*/}
                 {/*</Text>*/}
@@ -102,6 +107,27 @@ const DefaultTabBar = React.createClass({
         );
     },
 });
+
+@observer
+class TabImage extends Component {
+
+    render() {
+        let styles = tabItemStyleHolder.styles;
+        return <Image source={this.props.img} resizeMode="contain" style={styles.tab}/>
+    }
+}
+
+const tabItemStyleHolder = StyleHolder.create(() => {
+    return {
+        tab: {
+            flex: 1,
+            alignItems: 'center',
+            justifyContent: 'center',
+            tintColor: Theme.primaryColor,
+            //backgroundColor:"#FF0"
+        },
+    }
+})
 
 const styles = StyleSheet.create({
     tab: {

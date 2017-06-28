@@ -5,6 +5,7 @@ import {observable, action} from 'mobx'
 
 import StyleHolder from './StyleHolder'
 import ThemePink from './ThemePink'
+import ThemeLight from './ThemeLight'
 import ThemeDark from './ThemeDark'
 
 
@@ -39,12 +40,13 @@ class CurrentStyle {
 }
 
 let currentStyle = new CurrentStyle();
-currentStyle.setTheme(ThemeDark);
+currentStyle.setTheme(ThemeLight);
 
 export default currentStyle
 
 export {
     StyleHolder,
     ThemePink,
-    ThemeDark
+    ThemeDark,
+    ThemeLight
 }
