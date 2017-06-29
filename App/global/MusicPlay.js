@@ -4,6 +4,7 @@
 
 import {observable, action} from 'mobx'
 import Sound from 'react-native-sound';
+import Toast from 'react-native-nightfarmer-toast'
 
 class MusicPlayDefine {
 
@@ -49,18 +50,26 @@ class MusicPlayDefine {
         return url
     }
 
-    async stop() {
+    async stop(reset) {
         this.currentSound && this.currentSound.pause(() => {
-            this.state = this.PAUSED
+            if (reset) {
+                this.state = this.IDLE
+            }else {
+                this.state = this.PAUSED
+            }
         })
     }
 
     async togglePlay(artists, name, id) {
         let url = this.url;
         if (this.id != id) {
+            await this.stop(true)
+            Toast.show("开始加载-" + name)
+            console.info("开始加载" + name)
             url = await this.parseUrl(artists, name)
             if (!url) {
                 console.info("解析播放地址失败")
+                Toast.show("因版权问题，播放地址解析失败")
                 return;
             }
             console.info("新地址:", url)

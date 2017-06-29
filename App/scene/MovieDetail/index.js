@@ -137,10 +137,13 @@ class ArticleDetail extends Component {
         photoList.push(resultObj.data.detailcover);
         photoList = photoList.concat(resultObj.data.photo)
         resultObj2.data.data[0].photoList = photoList
-        InteractionManager.runAfterInteractions(() => {
-            // this.data = resultObj.data
-            this.data = resultObj2.data.data[0]
-        })
+        if (MusicPlay.state == MusicPlay.PLAYING) {
+            this.data = resultObj.data
+        } else {
+            InteractionManager.runAfterInteractions(() => {
+                this.data = resultObj.data
+            })
+        }
     }
 }
 

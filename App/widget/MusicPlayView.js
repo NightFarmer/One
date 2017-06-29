@@ -49,7 +49,7 @@ class MusicPlayView extends Component {
                 })
                 break;
             case MusicPlay.PLAYING:
-                console.info("状态变更-play")
+                console.info("状态变更-play", this.props.name)
                 if (this.playViewCacheState != MusicPlay.PLAYING) {
                     this.playAnim()
                     this.playViewCacheState = MusicPlay.PLAYING

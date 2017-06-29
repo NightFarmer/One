@@ -126,9 +126,13 @@ class ArticleDetail extends Component {
         // let response = await fetch("http://v3.wufazhuce.com:8000/api/music/detail/" + 2143 + "?version=4.2.2")
         let resultObj = await response.json()
         resultObj.data.content = resultObj.data.content.replace(/data-source="XIAMI"/g, 'data-source="ONE"')
-        InteractionManager.runAfterInteractions(() => {
+        if (MusicPlay.state == MusicPlay.PLAYING) {
             this.data = resultObj.data
-        })
+        } else {
+            InteractionManager.runAfterInteractions(() => {
+                this.data = resultObj.data
+            })
+        }
     }
 }
 
